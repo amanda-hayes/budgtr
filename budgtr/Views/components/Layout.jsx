@@ -7,7 +7,7 @@ class Layout extends React.Component {
         return(
             <html>
                 <head>
-                    <title>Budgeting I guess</title>
+                    <title>budgtr</title>
                     <link rel="stylesheet" href="/css/styles.css"/>   
                 </head>
                 <body>

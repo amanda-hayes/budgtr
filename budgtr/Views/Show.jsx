@@ -6,9 +6,22 @@ class Show extends React.Component {
         const budget = this.props.budget;
         return (
             <Layout>
-                <h1>Show Page</h1>
-                <p>The {budget.name} is {budget.amount}</p>
-                
+                <a href="/budget/">Go back to List</a>
+                <h1>{budget.name}</h1>
+                <table>
+                <tr>
+                    <th>Date</th>
+                    <td>{budget.date}</td>
+                </tr>
+                <tr>
+                    <th>From</th>
+                    <td>{budget.from}</td>
+                </tr>
+                <tr>
+                    <th>Amount</th>
+                    <td>{budget.amount}</td>
+                </tr>
+                </table>
             </Layout>
         )
     }
