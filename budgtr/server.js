@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const budget = require('./Models/budget.js');
-const bankAccount = 
 
 // MIDDLEWARE
 app.set('view engine', 'jsx');
@@ -11,11 +10,20 @@ app.use(express.static("public"))
 
 app.get("/budget/", (req, res) => {
     res.render("Index", {
-    budget: budget})
+        budget: budget,
+        bankAccount: checkBalance()
+    })
 });
 
+function checkBalance() {
+    return parseInt(budget.reduce((currentTotal, budget) => {
+        return (budget.amount + currentTotal)
+    }, 0));
+}
+      
+
 // NEW
-app.get('/budget/new', (req, res) => {
+app.get("/budget/new", (req, res) => {
     res.render('New');
 })
 
@@ -27,13 +35,10 @@ app.post("/budget", (req, res) => {
 })
 
 // BANK ACCOUNT
-// const sum = budget.reduce(function (a, b) {
-//     return a + b
-//   }, 0)
-// sum(budget);
+
 
 // SHOW
-app.get('/budget/:indexOfBudgetArray', (req, res) =>{
+app.get('/budget/:indexOfBudgetArray', (req, res) => {
     res.render('Show', {
         budget: budget[req.params.indexOfBudgetArray]
     })
